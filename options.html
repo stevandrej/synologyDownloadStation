@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+    <div class="container" id='content'>
+        <div class="row align-items-center ">
+            <div class="col-md-6 offset-md-3 align-self-center">
+                <form>
+                    <div class="form-group">
+                        <label for="webadress">Web address or IP of the NAS Station with http:// | https:// and port number</label>
+                        <input class="form-control" id="webaddress" placeholder="http://192.168.0.25:5000 or https://domain.synology.me:5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input class="form-control" id="username" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <button id='buttonSave' type="button" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 align-self-center" id="savedNotification">
+
+            </div>
+        </div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+
+</html>

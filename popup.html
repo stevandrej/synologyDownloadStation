@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="popup.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5 id="head">Active Tasks:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul id="tasks-list" class="list-group list-group-flush">
+                
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col">
+                    <form>
+                        <div class="form-row align-items-center"> 
+                            <div class="col-auto">
+                                <label>Add task:&nbsp;</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="url" id="addTask" class="form-control" value="" placeholder="Insert URL"/>
+                            </div>
+                            <div class="col-auto">
+                                <button id="buttonAddTask" type="button" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col">
+                    <button id="logOut" type="button" class="btn btn-dark">Log Out</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
