@@ -1,5 +1,4 @@
 (async function init() {
-	debugger;
 	let username = null
 	let password = null
 	let webaddress = null;
