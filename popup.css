@@ -1,5 +1,10 @@
 body{
-    width:450px;
+    width:500px;
     padding-top: 15px;
     padding-bottom: 15px;
+    font-family: 'Roboto', sans-serif !important;;
+}
+
+#loader {
+    display: none;
 }

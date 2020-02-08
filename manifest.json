@@ -4,7 +4,7 @@
   "description": "For faster adding tasks to Synology Download Station",
   "permissions": ["cookies","declarativeContent","storage","https://*.google.com/","http://*.google.com/","http://192.168.0.25:5000/","https://192.168.0.25:5000/"],
   "background": {
-    "scripts": ["jquery.js", "background.js"],
+    "scripts": ["scripts/jquery.js", "background.js"],
     "persistent": false
   },
   "browser_action":{

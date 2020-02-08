@@ -4,21 +4,20 @@ let address;
 
 let buttonSave = document.getElementById('buttonSave');
 
-buttonSave.addEventListener('click',
-    function setCredentials() {
-        uname = document.getElementById('username').value;
-        pass = document.getElementById('password').value;
-        address = document.getElementById('webaddress').value;
+buttonSave.addEventListener('click', function setCredentials() {
+    uname = document.getElementById('username').value;
+    pass = document.getElementById('password').value;
+    address = document.getElementById('webaddress').value;
 
-        if(uname=='' || pass=='')
-        {
-            errorNotification();
-        }
-        else {
-            chrome.storage.local.set({ username:uname, password:pass, webaddress:address });
-            savedNotification();
-        }
-    });
+    if(uname=='' || pass=='')
+    {
+        errorNotification();
+    }
+    else {
+        chrome.storage.local.set({ username:uname, password:pass, webaddress:address });
+        savedNotification();
+    }
+});
 
     function createElementForSavedNotification() {
         const txtElement = document.createElement('div');

@@ -3,6 +3,8 @@
     <head>
         <link rel="stylesheet" href="popup.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="fontawesome/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -14,7 +16,19 @@
             <div class="row" id='tasks-list-div'>
                 <div class="col">
                     <ul id="tasks-list" class="list-group list-group-flush">
-                
+                        <li id="loader">
+                            <div class="text-center">
+                                <div class="spinner-grow text-danger" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-warning" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-info" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -27,10 +41,10 @@
                                 <label>Add task:&nbsp;</label>
                             </div>
                             <div class="col-auto">
-                                <input type="url" id="addTask" class="form-control" value="" placeholder="Insert URL"/>
+                                <input type="url" id="addTask" class="form-control" autocomplete="off" value="" placeholder="Insert URL"/>
                             </div>
                             <div class="col-auto">
-                                <button id="buttonAddTask" type="button" class="btn btn-primary">Add</button>
+                                <button id="buttonAddTask" type="button" class="btn btn-primary">Add <i class='fas fa-plus-circle'></i></button>
                             </div>
                         </div>
                     </form>
@@ -39,11 +53,15 @@
             <hr/>
             <div class="row">
                 <div class="col">
-                    <button id="logOut" type="button" class="btn btn-dark">Log Out</button>
+                    <button id="logOut" type="button" class="btn btn-danger">Log Out</button>
+
+                    <button type="button" class="btn btn-info float-right" id='refresh'>Refresh</button>
                 </div>
             </div>
         </div>
 
         <script src="popup.js"></script>
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

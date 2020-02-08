@@ -34,15 +34,15 @@
 				"url": webaddress,
 				"name": 'SynologyDownloadStation Chrome Extension'
 			}, async data => {
-			if (data) {
-				if (data.value == null && data.name !== "SynologyDownloadStation Chrome Extension") {
+				if (data) {
+					if (data.value == null && data.name !== "SynologyDownloadStation Chrome Extension") {
+						await login();
+					}
+				}
+				else {
 					await login();
 				}
-			}
-			else {
-				await login();
-			}
-		});
+			});
 	}
 
 	async function login() {
@@ -51,6 +51,7 @@
 				return response.json();
 			})
 			.then(loginrequest => {
+				console.log(loginrequest);
 				chrome.cookies.set({
 					'url': `${webaddress}`,
 					'name': 'SynologyDownloadStation Chrome Extension',
@@ -70,44 +71,96 @@
 	}
 
 	async function DownloadTasks_getMethod() {
+		//remove tasks in the list, if previously populated 
+		let list = document.getElementById("tasks-list");
+		while (list.lastElementChild.getAttribute('id') !== 'loader') {
+			list.removeChild(list.lastChild);
+		}
+
+		//GET tasks from server
+		document.getElementById('loader').style.display = 'block';
+
 		await fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=list`)
 			.then(response => {
 				return response.json()
 			})
 			.then(tasks => {
 				console.log(tasks);
-				let appendActiveTasks = document.getElementById("tasks-list");
-				tasks.data.tasks.forEach(task => {
+				//Check if tasks list from server response is empty
+				if (tasks.data.tasks.length === 0) {
+					let appendActiveTasks = document.getElementById("tasks-list");
 					let li = document.createElement("li");
-					li.className = "list-group-item list-group-item-action";
-					li.appendChild(document.createTextNode(task.title));
+					li.className = "list-group-item";
+					li.appendChild(document.createTextNode("Task list is empty."));
 					appendActiveTasks.appendChild(li);
-				});
+				}
+				else {
+					let appendActiveTasks = document.getElementById("tasks-list");
+					tasks.data.tasks.forEach(task => {
+						let li = document.createElement("li");
+						
+						//background color green for finished tasks
+						if(task.status === 'finished')
+						{
+							li.className = "list-group-item list-group-item-action bg-success text-white";
+						}
+						else{
+							li.className = "list-group-item list-group-item-action";
+						}
+
+						li.id = task.id;
+						li.appendChild(document.createTextNode(task.title));
+
+							let plusButton = document.createElement('button');
+							plusButton.className = 'btn btn-dark btn-sm float-right removeBtn';
+							plusButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+						li.appendChild(plusButton);
+
+						appendActiveTasks.appendChild(li);
+					});
+				}
+				document.getElementById('loader').style.display = 'none';
 			});
+
+		removeBtn();	//reloads the querySelected 'remove buttons', w/out this after 'refresh' buttons won't work!
 	}
 
-	function addTask() {
-		chrome.storage.local.get(['webaddress'], function (result) {
-			let webaddress = result.webaddress;
-			const addTaskLink = document.getElementById('addTask').value;
-			if (addTaskLink !== '')
-				fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=create&uri=${addTaskLink}`);
+	//--------------------------------------
+	//Button Listeners:
+
+	//Button Add Task
+	document.getElementById('buttonAddTask').addEventListener('click', async function addTask() {
+		const addTaskLink = document.getElementById('addTask').value;
+		if (addTaskLink !== '') {
+			document.getElementById('loader').style.display = 'block';
+			await fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=create&uri=${addTaskLink}`).then(() => {
+				DownloadingTasks();
+			})
+				.then(document.getElementById('addTask').value = '');
+		}
+	});
+
+	//Button Remove Task
+	function removeBtn() {
+		let btns = document.querySelectorAll('.removeBtn');
+		btns.forEach(btn => {
+			btn.addEventListener('click', function removeTask() {
+				let taskID = this.parentElement.id;
+				document.getElementById('loader').style.display = 'block';
+				fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=delete&id=${taskID}`)
+					.then(() => {
+						DownloadingTasks();
+					});
+			});
 		});
 	}
-
-	//--------------------
-	//Button Listeners:
-	//Button Add Task
-	document.getElementById('buttonAddTask').addEventListener('click', function () {
-		addTask();
-	});
+	
+	document.getElementById('refresh').addEventListener('click', DownloadingTasks);
 
 	//Log Out button
 	document.getElementById('logOut').addEventListener('click', function () {
-		console.log('log out');
-		chrome.storage.local.get(["webaddress"], function (result) {
-			fetch(`${result.webaddress}/webapi/auth.cgi?api=SYNO.API.Auth&version=1&method=logout&session=DownloadStation`).then(chrome.storage.local.clear()).then(console.log('clear'));
-		});
+		fetch(`${webaddress}/webapi/auth.cgi?api=SYNO.API.Auth&version=1&method=logout&session=DownloadStation`).then(chrome.storage.local.clear());
 		location.reload();
 	});
 
