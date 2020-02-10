@@ -111,11 +111,22 @@
 						li.id = task.id;
 						li.appendChild(document.createTextNode(task.title));
 
-							let plusButton = document.createElement('button');
-							plusButton.className = 'btn btn-dark btn-sm float-right removeBtn';
-							plusButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+							//create remove button
+							let removeButton = document.createElement('button');
+							removeButton.className = 'btn btn-dark btn-sm float-right removeBtn';
+							removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+							
+							//add event listenter to 'remove button'
+							 removeButton.addEventListener('click', function removeTask(){
+								let taskID = this.parentElement.id;
+								document.getElementById('loader').style.display = 'block';
+								fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=delete&id=${taskID}`)
+									.then(() => {
+										DownloadingTasks(); //reload list
+									});
+							});
 
-						li.appendChild(plusButton);
+						li.appendChild(removeButton);
 
 						appendActiveTasks.appendChild(li);
 					});
@@ -123,7 +134,6 @@
 				document.getElementById('loader').style.display = 'none';
 			});
 
-		removeBtn();	//reloads the querySelected 'remove buttons', w/out this after 'refresh' buttons won't work!
 	}
 
 	//--------------------------------------
@@ -141,21 +151,6 @@
 		}
 	});
 
-	//Button Remove Task
-	function removeBtn() {
-		let btns = document.querySelectorAll('.removeBtn');
-		btns.forEach(btn => {
-			btn.addEventListener('click', function removeTask() {
-				let taskID = this.parentElement.id;
-				document.getElementById('loader').style.display = 'block';
-				fetch(`${webaddress}/webapi/DownloadStation/task.cgi?api=SYNO.DownloadStation.Task&version=1&method=delete&id=${taskID}`)
-					.then(() => {
-						DownloadingTasks();
-					});
-			});
-		});
-	}
-	
 	document.getElementById('refresh').addEventListener('click', DownloadingTasks);
 
 	//Log Out button
