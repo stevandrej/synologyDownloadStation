@@ -3,7 +3,7 @@
 Chrome Extension for Synology DownloadStation  
 -This extension is still **not published** in the Chrome Web Store
 
-##Description
+## Description
 
 This extension allows you to quickly **view** your active or completed tasks in your Synology Torrent Client (aka. Download Station), **add** new torrents via torrent link or **remove** tasks.
 #### Options page
