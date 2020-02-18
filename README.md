@@ -23,7 +23,7 @@ _Login credentials are saved locally in your Chrome browser._
 ## Technologies
 
 * Javascript
-* [Bootstrap](https://getbootstrap.com/) - open source toolkit for developing with HTML, CSS, and JS
+* [Bootstrap](https://getbootstrap.com/) - Open source toolkit for developing with HTML, CSS, and JS
 * [Roboto fonts](https://fonts.google.com/specimen/Roboto) - Official Roboto fonts from Google
 * [FontAwesome](https://fontawesome.com/) - Icon set and toolkit
 * [Synology Download Station](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/DownloadStation/All/enu/Synology_Download_Station_Web_API.pdf) - Official API Documentation
