@@ -26,3 +26,11 @@ _Login credentials are saved locally in your Chrome browser._
 * [Bootstrap](https://getbootstrap.com/) - open source toolkit for developing with HTML, CSS, and JS
 * [Roboto fonts](https://fonts.google.com/specimen/Roboto) - Official Roboto fonts from Google
 * [FontAwesome](https://fontawesome.com/) - Icon set and toolkit
+* [Synology Download Station](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/DownloadStation/All/enu/Synology_Download_Station_Web_API.pdf) - Official API Documentation
+* [Chrome extensions](https://developer.chrome.com/extensions) - Chrome extensions documentation
+
+## Functions that needs to be developed
+* Check if login credentials are wrong and alert the user
+* Create task by uploading it as a file
+* Show downloading progress (percentage)
+* Clear all tasks with status 'completed'
