@@ -7,9 +7,9 @@ Chrome Extension for Synology DownloadStation
 
 This extension allows you to quickly **view** your active or completed tasks in your Synology Torrent Client (aka. Download Station), **add** new torrents via torrent link or **remove** tasks.
 #### Options page
-- To set up the login parameters go to the extension options, and fill in the fields  
-- NAS address (make sure to fill in with the 'http' or 'https' and to include the port number (:5000) (see the input placeholder for example)  
-- Username and Password and click SAVE. Now you can close the options page and use the extension.  
+* To set up the login parameters go to the extension options, and fill in the fields  
+* NAS address (make sure to fill in with 'http:' or 'https:' and to include the port number (:5000) (see the input placeholder for example)  
+* Username and Password and click SAVE. Now you can close the options page and use the extension.  
 _Login credentials are saved locally in your Chrome browser._
 
 #### The Extension
