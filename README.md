@@ -1,5 +1,5 @@
 # synologyDownloadStation
-___
+
 Chrome Extension for Synology DownloadStation  
 -This extension is still *not published* in the Chrome Web Store
 
