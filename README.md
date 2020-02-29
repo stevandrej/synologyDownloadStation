@@ -11,6 +11,7 @@ This extension allows you to quickly **view** your active or completed tasks in 
 * NAS address (make sure to fill in with "http:" or "https:" and to include the port number (:5000) (see the input placeholder for example)  
 * Username and Password and click SAVE. Now you can close the options page and use the extension.  
 _Login credentials are saved locally in your Chrome browser._
+![option page](https://raw.githubusercontent.com/stevandrej/synologyDownloadStation/master/md-images/option-page.gif)
 
 #### The Extension
 * For authentication, the extension will create cookie (if there isn't one) and will generate a list of active tasks.
@@ -19,6 +20,7 @@ _Login credentials are saved locally in your Chrome browser._
 * You can remove task by click on the trash icon next to it.
 * The refresh button reloads the task list.
 * Log out button removes the credentials from the local storage and logs out.
+![App picture](https://raw.githubusercontent.com/stevandrej/synologyDownloadStation/master/md-images/app.png)
 
 ## Technologies
 
