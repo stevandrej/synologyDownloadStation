@@ -2,7 +2,7 @@
   "name": "Synology DownloadStation",
   "version": "1.0",
   "description": "For faster adding tasks to Synology Download Station",
-  "permissions": ["cookies","declarativeContent","storage","https://*.google.com/","http://*.google.com/","http://192.168.0.25:5000/","https://192.168.0.25:5000/"],
+  "permissions": ["cookies","declarativeContent","storage","*://*/"],
   "background": {
     "scripts": ["js/jquery.js", "js/background.js"],
     "persistent": false
