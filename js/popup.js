@@ -4,7 +4,7 @@
 	let webaddress = null;
 
 	if (await getCredentials()) {
-		await checkCookie();
+		/* await checkCookie(); */
 		await DownloadingTasks();
 	}
 
@@ -28,7 +28,7 @@
 		});
 	}
 
-	async function checkCookie() {
+/* 	async function checkCookie() {
 		chrome.cookies.get(
 			{
 				"url": webaddress,
@@ -43,7 +43,7 @@
 					await login();
 				}
 			});
-	}
+	} */
 
 	async function login() {
 		await fetch(`${webaddress}/webapi/auth.cgi?api=SYNO.API.Auth&version=2&method=login&account=${username}&passwd=${password}&session=DownloadStation&format=cookie`)
@@ -52,11 +52,11 @@
 			})
 			.then(loginrequest => {
 				console.log(loginrequest);
-				chrome.cookies.set({
+/* 				chrome.cookies.set({
 					'url': `${webaddress}`,
 					'name': 'SynologyDownloadStation Chrome Extension',
 					'value': loginrequest.data.sid
-				});
+				}); */
 			});
 	}
 
